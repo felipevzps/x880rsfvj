@@ -1,0 +1,92 @@
+#!/usr/bin/env python
+
+configfile: "config.yaml"
+
+#Software executable
+bwa = config["software"]["bwa"]
+samtools = config["software"]["samtools"]
+bcftools = config["software"]["bcftools"]
+vcfutils = config["software"]["vcfutils"]
+
+rule all:
+    input:
+        "../data/vcf/final_variants.vcf"
+
+rule bwa_index:
+    input:
+        reference_chromossome = "../data/bwa/grch38.chr22.fasta"
+    output:
+        "../data/bwa/grch38.chr22.fasta.amb",
+        "../data/bwa/grch38.chr22.fasta.ann",
+        "../data/bwa/grch38.chr22.fasta.bwt",
+        "../data/bwa/grch38.chr22.fasta.fai",
+        "../data/bwa/grch38.chr22.fasta.pac",
+        "../data/bwa/grch38.chr22.fasta.sa"
+    log:
+        "../logs/bwa_index"
+    shell:
+        "{bwa} index {input.reference_chromossome}"
+
+rule bwa_mem:
+    input:
+        reference_chromossome = "../data/bwa/grch38.chr22.fasta",
+        amostra_R1 = "../data/amostra-lbb_R1.fq",
+        amostra_R2 = "../data/amostra-lbb_R2.fq",
+        bwa_index_output = "../data/bwa/grch38.chr22.fasta.amb"
+    output:
+        alignment = "../data/sam/alignment.sam"
+    log:
+        "../logs/sam_alignment"
+    shell:
+        "{bwa} mem {input.reference_chromossome} {input.amostra_R1} {input.amostra_R2} > {output.alignment}"
+
+rule SAM_to_BAM:
+    input:
+        alignment_sam = "../data/sam/alignment.sam"
+    output:
+        alignment_bam = "../data/bam/alignment.bam"
+    log:
+        "../logs/bam_alignment"
+    shell:
+        "{samtools} view -S -b {input.alignment_sam} > {output.alignment_bam}"
+
+rule sort_BAM_coordinates:
+    input:
+        alignment_bam = "../data/bam/alignment.bam"
+    output:
+        sorted_alignment_bam = "../data/bam/sorted_alignment.bam"
+    log:
+        "../logs/sorted_alignment_bam"
+    shell:
+        "{samtools} sort -o {output.sorted_alignment_bam} {input.alignment_bam}"
+
+rule calculate_coverage:
+    input:
+        reference_chromossome = "../data/bwa/grch38.chr22.fasta",
+        sorted_alignment_bam = "../data/bam/sorted_alignment.bam"
+    output:
+        raw_bcf = "../data/bcf/raw.bcf"
+    log:
+        "../logs/bcf_coverage"
+    shell:
+        "{bcftools} mpileup -O b -o {output.raw_bcf} -f {input.reference_chromossome} {input.sorted_alignment_bam}"
+
+rule detect_SNVs:
+    input:
+        raw_bcf = "../data/bcf/raw.bcf"
+    output:
+        vcf_file = "../data/vcf/variants.vcf"
+    log:
+        "../logs/variants_vcf"
+    shell:
+        "{bcftools} call --ploidy 2 -m -v -o {output.vcf_file} {input.raw_bcf}"
+
+rule filter_SNVs:
+    input:
+        vcf_file = "../data/vcf/variants.vcf"
+    output:
+        final_vcf_file = "../data/vcf/final_variants.vcf"
+    log:
+        "../logs/final_variants_vcf"
+    shell:
+        "{vcfutils} varFilter {input.vcf_file} > {output.final_vcf_file}"

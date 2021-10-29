@@ -1,0 +1,5 @@
+software:
+        bwa: /home/felipe/Documents/x880rsfvj/src/bwa-0.7.17/bwa
+        samtools: /home/felipe/Documents/x880rsfvj/src/samtools-1.14/samtools
+        bcftools: /home/felipe/Documents/x880rsfvj/src/bcftools-1.14/bcftools
+        vcfutils: /home/felipe/Documents/x880rsfvj/src/bcftools-1.14/bin/vcfutils.pl
