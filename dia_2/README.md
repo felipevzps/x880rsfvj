@@ -6,7 +6,7 @@
 
 ### Resultado
 
-- Arquivo [VCF pós filtragem]()
+- Arquivo [VCF pós filtragem](https://github.com/felipevzps/x880rsfvj/blob/main/dia_2/filtered_final_variants.vcf.gz)
 
 # 2 - Discussão sobre as regiões com baixa cobertura
 
