@@ -13,7 +13,7 @@ Para essa atividade de Variant Calling eu desenvolvi um workflow automatizado co
 O resultado final das variantes encontradas nesse primeiro dia de desafio está no arquivo [final_variants.vcf.gz](https://github.com/felipevzps/x880rsfvj/blob/main/dia_1/final_variants.vcf.gz)
 # Validação do resultado da Variant Calling
 
-Para validar as variantes encontradas, eu desenvolvi um script em bash (disponível em data/grep.sh) capaz de validar as variantes encontradas e as variantes presentes no gabarito fornecido pela Mendelics. Como é possvel observar nas tabelas abaixo, todas as variantes presentes no gabarito também estão presentes no processo de Variant Calling aqui descrito.
+Para validar as variantes encontradas, eu desenvolvi um script em bash (disponível [grep.sh](https://github.com/felipevzps/x880rsfvj/blob/main/data/grep.sh)) capaz de validar as variantes encontradas e as variantes presentes no gabarito fornecido pela Mendelics. Como é possvel observar nas tabelas abaixo, todas as variantes presentes no gabarito também estão presentes no processo de Variant Calling aqui descrito.
 
 ### Pequeno Gabarito
 | CHROM  | POS | ID | REF | ALT | QUAL | FILTER | INFO | FORMAT | AMOSTRA-LBB |
