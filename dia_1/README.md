@@ -10,6 +10,7 @@ Para essa atividade de Variant Calling eu desenvolvi um workflow automatizado co
 6) detect_SNVs: Nessa etapa ocorre a detecção de SNVs com o software bcftools. Nessa etapa, parâmetros importantes precisam ser cuidadosamente observados, como a ploidia do organismo (homo sapiens = 2n) e caractersticas desejáveis sobre as variantes, como por exemplo, variantes raras.
 7) filter_SNVs: Essa é a última etapa do processo de Variant Calling que escolhi aplicar neste desafio. Aqui, eu faço uma filtragem das variantes e mantenho apenas as variantes SNVs. 
 
+O resultado final das variantes encontradas nesse primeiro dia de desafio está no arquivo [final_variants.vcf.gz](https://github.com/felipevzps/x880rsfvj/blob/main/dia_1/final_variants.vcf.gz)
 # Validação do resultado da Variant Calling
 
 Para validar as variantes encontradas, eu desenvolvi um script em bash (disponível em data/grep.sh) capaz de validar as variantes encontradas e as variantes presentes no gabarito fornecido pela Mendelics. Como é possvel observar nas tabelas abaixo, todas as variantes presentes no gabarito também estão presentes no processo de Variant Calling aqui descrito.
