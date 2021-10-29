@@ -1,6 +1,6 @@
 # Primeiro dia de desafio
 
-Para essa atividade de Variant Calling eu desenvolvi um workflow automatizado com a ferramenta Snakemake. Este workflow foi desenvolvido para desempenhar uma rotina padrão de Variant Calling, onde os dados fornecidos (reads e cromossomo de referência) passam pelos seguintes processos de trabalho:
+Para essa atividade de Variant Calling eu desenvolvi o (Workflow Automatizado)[https://github.com/felipevzps/x880rsfvj/blob/main/workflow/Snakefile] com a ferramenta Snakemake. Este workflow foi desenvolvido para desempenhar uma rotina padrão de Variant Calling, onde os dados fornecidos (reads e cromossomo de referência) passam pelos seguintes processos de trabalho:
 
 1) rule bwa_index: Indexação do cromossomo de referência - (com o objetivo de acelerar o alinhamento e obter melhores alinhamentos em potencial)
 2) rule bwa_mem: Alinhamento das reads no cromossomo de referência. Nessa etapa, as reads são alinhadas no cromossomo com o algoritmo BWA_MEM. 
