@@ -30,6 +30,8 @@ tabix 00-common_all.vcf.gz
 
 Nessa etapa final de anotação, o SnpEff obterá informações do banco de dados de anotação fornecido (hg38) e preencherá o arquivo VCF adicionando as informações da anotação no campo `INFO`.
 
+OBS: Por padrão, o SnpEff baixa e instala bancos de dados automaticamente (desde a versão 4.0) para o organismo especificado.
+
 ### Requisitos e usage
 
 * Requisitos: SnpEff-5.0e
