@@ -52,7 +52,7 @@ A avaliação da cobertura foi realizada com o [mosdepth](https://github.com/bre
 |total_region |	926400 |	101137292 |	109.17 |	0	 | 782 |
 
 
-- Arquivo [BED contendo regiões não cobertas]()
+- Arquivo [BED contendo regiões não cobertas](https://github.com/felipevzps/x880rsfvj/blob/main/dia_2/regioes_nao_cobertas.bed)
 - Arquivo [BED contendo regies cobertas]()
 
 # 3 - Informações sobre o alinhamento
