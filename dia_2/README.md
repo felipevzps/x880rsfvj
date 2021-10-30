@@ -4,7 +4,7 @@
 
 A filtragem de variantes é essencial para manter variantes com qualidades. Existem diversos métodos de se filtrar as variantes de um VCF, desde métodos clássicos/tradicionais, no qual são aplicados 'hard filters' para selecionar 'threshold' específicos, até os métodos mais sofisticados, como a aplicação de algoritmos de machine learning para encontrar os melhores filtros, como o [Variant Quality Score Recalibration](https://gatk.broadinstitute.org/hc/en-us/articles/360035531612-Variant-Quality-Score-Recalibration-VQSR-). 
 
-Infelizmente, devido a minha falta de reconhecimento em trabalhar com arquivos VCFs e o tempo corrido de competição, eu optei por aplicar apenas 'hard filters', seguindo as boas práticas de bioinformática no assunto [GATK Best Practices - Filter Variants](https://gatk.broadinstitute.org/hc/en-us/articles/360035531112--How-to-Filter-variants-either-with-VQSR-or-by-hard-filtering).
+Infelizmente, devido a minha falta de reconhecimento em trabalhar com arquivos VCFs e o tempo corrido de desafio, eu optei por aplicar apenas 'hard filters', seguindo as boas práticas de bioinformática no assunto [GATK Best Practices - Filter Variants](https://gatk.broadinstitute.org/hc/en-us/articles/360035531112--How-to-Filter-variants-either-with-VQSR-or-by-hard-filtering).
 
 ### Métricas utilizadas
 
@@ -38,7 +38,26 @@ O arquivo abaixo foi gerado após a aplicação do filtro e contém apenas as va
 
 A avaliação da cobertura foi realizada com o [mosdepth](https://github.com/brentp/mosdepth), uma ferramenta especializada no cálculo de coberturas.
 
+### Requisitos e código para rodar mosdepth
+
+* Requisitos: samtools-1.14, mosdepth-0.2.6
+
+Primeiramente, é necessário criar o index do arquivo BAM de alinhamento, gerado no primeiro dia de desafio:
+
+```bash
+/samtools-1.14/samtools index sorted.alignment.bam
+```
+Com o arquivo 'sorted.alignment.bam.bai' em mãos, é possível prosseguir e rodar o mosdepth: 
+
+```bash
+./mosdepth --by coverage.bed sample-output sorted.alignment.bam
+```
+
+O código acima gerou métricas gerais sobre as coberturas, detacadas a seguir, e também, o arquivo [sample-output.regions.bed.gz](https://github.com/felipevzps/x880rsfvj/blob/main/dia_2/sample-output.regions.bed.gz) que contém as coberturas por regies. A partir desse arquivo, eu extrai apenas as regiões NÃO cobertas, gerando o arquivo com [regioes_nao_cobertas.bed](https://github.com/felipevzps/x880rsfvj/blob/main/dia_2/regioes_nao_cobertas.bed) que foi solicitado.
+
 ### Resultado
+
+Um dos resultados gerados pelo mosdepth é o resumo das coberturas por regiões.
 
 * Mosdepth Summary
 
@@ -53,6 +72,10 @@ A avaliação da cobertura foi realizada com o [mosdepth](https://github.com/bre
 - Arquivo [BED contendo regies cobertas](https://github.com/felipevzps/x880rsfvj/blob/main/dia_2/sample-output.regions.bed.gz)
 
 ### Figuras
+
+Além do o arquivo com [regioes_nao_cobertas.bed](https://github.com/felipevzps/x880rsfvj/blob/main/dia_2/regioes_nao_cobertas.bed) e o resumo das coberturas por regiões, eu optei por gerar algumas figuras para demonstrar mais facilmente as informações sobre as coberturas.
+
+
 
 # 3 - Informações sobre o alinhamento
 
