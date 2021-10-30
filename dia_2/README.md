@@ -36,7 +36,7 @@ O arquivo abaixo foi gerado após a aplicação do filtro e contém apenas as va
 
 # 2 - Discussão sobre as regiões com baixa cobertura
 
-### Critérios:
+A avaliação da cobertura foi realizada com o [mosdepth](https://github.com/brentp/mosdepth), uma ferramenta especializada no cálculo de coberturas.
 
 ### Figuras
 
