@@ -7,6 +7,9 @@
 É necessário respeitar o parentesco do diretório `data`. Exemplo:
 
 ```bash
+$pwd 
+/home/x880rsfvj
+
 $tree data
 
 data/
