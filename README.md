@@ -16,7 +16,7 @@ data/
 │   ├── grch38.chr22.fasta 
 
 ```
-Para rodar o pipeline automatizado, basta atualizar o arquivo [config.yaml]() com o `path` para os softwares e utilizar o seguinte comando:
+Para rodar o pipeline automatizado, basta atualizar o arquivo [config.yaml](https://github.com/felipevzps/x880rsfvj/blob/main/workflow/config.yaml) com o `path` para os softwares e utilizar o seguinte comando:
 
 ```bash
 $pwd 
