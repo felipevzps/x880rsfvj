@@ -2,9 +2,9 @@
 
 # 1 - Quais variantes deverão ser desconsideradas do VCF?
 
-A filtragem de variantes é essencial para manter variantes com qualidades. Existem diversos métodos de se filtrar as variantes de um VCF, desde métodos clássicos/tradicionais, no qual são aplicados 'hard filters' para selecionar 'threshold' específicos, até os métodos mais sofisticados, como a aplicação de algoritmos de machine learning para encontrar os melhores filtros, como o [Variant Quality Score Recalibration](https://gatk.broadinstitute.org/hc/en-us/articles/360035531612-Variant-Quality-Score-Recalibration-VQSR-). 
+A filtragem de variantes é essencial para manter variantes com qualidades. Existem diversos métodos de se filtrar as variantes de um VCF, desde métodos clássicos/tradicionais, no qual são aplicados `hard filters` para selecionar `threshold` específicos, até os métodos mais sofisticados, como a aplicação de algoritmos de machine learning para encontrar os melhores filtros, como o [Variant Quality Score Recalibration](https://gatk.broadinstitute.org/hc/en-us/articles/360035531612-Variant-Quality-Score-Recalibration-VQSR-). 
 
-Infelizmente, devido a minha falta de reconhecimento em trabalhar com arquivos VCFs e o tempo corrido de desafio, eu optei por aplicar apenas 'hard filters', seguindo as boas práticas de bioinformática no assunto [GATK Best Practices - Filter Variants](https://gatk.broadinstitute.org/hc/en-us/articles/360035531112--How-to-Filter-variants-either-with-VQSR-or-by-hard-filtering).
+Infelizmente, devido a minha falta de reconhecimento em trabalhar com arquivos VCFs e o tempo corrido de desafio, eu optei por aplicar apenas `hard filters`, seguindo as boas práticas de bioinformática no assunto [GATK Best Practices - Filter Variants](https://gatk.broadinstitute.org/hc/en-us/articles/360035531112--How-to-Filter-variants-either-with-VQSR-or-by-hard-filtering).
 
 ### Métricas utilizadas
 
@@ -47,7 +47,7 @@ Primeiramente, é necessário criar o index do arquivo BAM de alinhamento, gerad
 ```bash
 /samtools-1.14/samtools index sorted.alignment.bam
 ```
-Com o arquivo 'sorted.alignment.bam.bai' em mãos, é possível prosseguir e rodar o mosdepth: 
+Com o arquivo `sorted.alignment.bam.bai` em mãos, é possível prosseguir e rodar o mosdepth: 
 
 ```bash
 ./mosdepth --by coverage.bed sample-output sorted.alignment.bam
@@ -74,12 +74,66 @@ Um dos resultados gerados pelo mosdepth é o resumo das coberturas por regiões.
 
 # 3 - Informações sobre o alinhamento
 
-### Reads totais
+Eu utilizei o samtools para avaliar as métricas de mapeamento e responder as seguintes questões: 
+*   Quantos reads? 
+*   Qual a porcentagem deles que foi mapeada corretamente? 
+*   Muitos alinharam em mais de um local do genoma com a mesma qualidade?
 
-### Porcentagem de reads mapeadas corretamente
+### requisitos e código para gerar informações sobre o alinhamento
 
-### Alinhamento de reads em mais de um local do genoma com a mesma qualidade
+* Requisitos: samtools-1.14
+
+Para gerar as informações gerais sobre o alinhamento, eu utilizei a opção `flagstat` do samtools: 
+
+```bash
+samtools-1.14/samtools flagstat sorted.alignment.bam
+```
+
+Esse comando gerou as seguintes informações:
+
+```bash
+1734246 + 0 in total (QC-passed reads + QC-failed reads)
+1734090 + 0 primary
+0 + 0 secondary
+156 + 0 supplementary
+0 + 0 duplicates
+0 + 0 primary duplicates
+1732956 + 0 mapped (99.93% : N/A)
+1732800 + 0 primary mapped (99.93% : N/A)
+1734090 + 0 paired in sequencing
+867045 + 0 read1
+867045 + 0 read2
+1729340 + 0 properly paired (99.73% : N/A)
+1731510 + 0 with itself and mate mapped
+1290 + 0 singletons (0.07% : N/A)
+0 + 0 with mate mapped to a different chr
+0 + 0 with mate mapped to a different chr (mapQ>=5)
+```
+
+A quantidade de `numreads` e `properly paired` foi utilizada na criação do [TSV com informações sobre o alinhamento](https://github.com/felipevzps/x880rsfvj/blob/main/dia_2/informacoes_alinhamento.tsv)
+
+Para gerar uma melhor visualização, eu optei por fazer um histograma utilizando caracteres ascii para demonstrar a cobertura do cromossomo mapeado. Gerei o histograma com a opção `coverage` do samtools:
+
+```bash
+samtools-1.14/samtools coverage -A -w 32 -r chr22:1-50818468 sorted.alignment.bam
+```
+O código acima gerou o seguinte histograma:
+
+```bash
+chr22 (50.82Mbp)
+  15.74% |                       .       :| Number of reads: 1732956
+  13.99% |            :.     .   :  .    :|     
+  12.24% |            :: .   :   :: :    :| Covered bases:   3.73Mbp
+  10.50% |            ::::  .:   :: :    :| Percent covered: 7.346%
+   8.75% |           :::::  ::   ::.:.   :| Mean coverage:   3.42x
+   7.00% |           :::::. ::. ::::::.: :| Mean baseQ:      29.9
+   5.25% |           :::::: ::: :::::::: :| Mean mapQ:       55.8
+   3.50% |          ::::::: ::: :::::::: :| 
+   1.75% |       . .::::::::::: ::::::::.:| Histo bin width: 1.59Mbp
+   0.00% |      :: :::::::::::::::::::::::| Histo max bin:   17.492%
+          1       15.88M    31.76M      50.82M
+```
 
 ### Resultado
 
-- Arquivo [TSV com informações sobre o alinhamento]() 
+- Arquivo [TSV com informações sobre o alinhamento](https://github.com/felipevzps/x880rsfvj/blob/main/dia_2/informacoes_alinhamento.tsv) 
