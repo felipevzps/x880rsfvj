@@ -1,5 +1,50 @@
 # Terceiro dia de desafio
 
+# Anotação das variantes no vcf filtrado
+
+### Anotação de variantes conhecidas
+
+A primeira etapa da anotaçao, seguindo as boas práticas de anotação, assim como indicado nesse [curso](https://hbctraining.github.io/In-depth-NGS-Data-Analysis-Course/sessionVI/lessons/03_annotation-snpeff.html), é fazer a anotação de variantes já conhecidas. 
+
+Nessa etapa eu utilizei o banco de dados contendo as variações humanas "comuns" (00-common_all.vcf.gz) do banco de dados [dbSNP](00-common_all.vcf.gz). O objetivo dessa etapa foi adicionar o ID das variantes do VCF filtrado no dia anterior. 
+
+### Requisitos e usage
+
+* Requisitos: bcftools-1.14
+
+Essa etapa foi executada com o código abaixo:
+
+```bash
+#Compactar o arquivo que será anotado
+bgzip filtered_final_variants.vcf
+tabix filtered_final_variants.vcf.gz
+
+#Compactar o dbSNP common_all
+tabix 00-common_all.vcf.gz
+
+#Anotação de variantes conhecidas
+./bcftools annotate -c ID -a 00-common_all.vcf.gz filtered_final_variants.vcf.gz > annotated_variants.vcf
+```
+
+### Anotação funcional com SnpEff
+
+Nessa etapa final de anotação, o SnpEff obterá informações do banco de dados de anotação fornecido (hg38) e preencherá o arquivo VCF adicionando as informações da anotação no campo `INFO`.
+
+### Requisitos e usage
+
+* Requisitos: SnpEff-5.0e
+
+A anotação de variantes utilizando como referência o genoma humano `hg38` foi realizada da seguinte forma:
+
+```bash
+./snpEff eff hg38 annotated_variants.vcf > annotated_variants_snpEff.vcf
+```
+
+O código acima gerou os seguintes arquivos:
+- [annotated_variants_snpEff.vcf](https://github.com/felipevzps/x880rsfvj/blob/main/dia_3/annotated_variants_snpEff.vcf): Contém informações das variantes identificadas a fim de facilitar a interpretação dos resultados.
+- [snpEff_genes.txt](https://github.com/felipevzps/x880rsfvj/blob/main/dia_3/snpEff_genes.txt): Contém informações das variantes nos genes.
+- [snpEff_summary.html](https://github.com/felipevzps/x880rsfvj/blob/main/dia_3/snpEff_summary.html): Esse arquivo html é super interessante e contém estatísticas geradas pelo SnpEff, como a Ti/Tv. 
+
 # 1 - Obtenha a razão Ti/Tv (transitions e transversions) das variantes encontradas no cromossomo 22
 
 OBS: Apenas SNPs foram utilizados nessa estátistica.
