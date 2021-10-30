@@ -79,7 +79,7 @@ Eu utilizei o samtools para avaliar as métricas de mapeamento e responder as se
 *   Qual a porcentagem deles que foi mapeada corretamente? 
 *   Muitos alinharam em mais de um local do genoma com a mesma qualidade?
 
-### requisitos e código para gerar informações sobre o alinhamento
+### Requisitos e código para gerar informações sobre o alinhamento
 
 * Requisitos: samtools-1.14
 
