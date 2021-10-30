@@ -71,11 +71,6 @@ Um dos resultados gerados pelo mosdepth é o resumo das coberturas por regiões.
 - Arquivo [BED contendo regiões não cobertas](https://github.com/felipevzps/x880rsfvj/blob/main/dia_2/regioes_nao_cobertas.bed)
 - Arquivo [BED contendo regies cobertas](https://github.com/felipevzps/x880rsfvj/blob/main/dia_2/sample-output.regions.bed.gz)
 
-### Figuras
-
-Além do o arquivo com [regioes_nao_cobertas.bed](https://github.com/felipevzps/x880rsfvj/blob/main/dia_2/regioes_nao_cobertas.bed) e o resumo das coberturas por regiões, eu optei por gerar algumas figuras para demonstrar mais facilmente as informações sobre as coberturas.
-
-
 
 # 3 - Informações sobre o alinhamento
 
