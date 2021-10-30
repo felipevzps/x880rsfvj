@@ -38,8 +38,6 @@ O arquivo abaixo foi gerado após a aplicação do filtro e contém apenas as va
 
 A avaliação da cobertura foi realizada com o [mosdepth](https://github.com/brentp/mosdepth), uma ferramenta especializada no cálculo de coberturas.
 
-### Figuras
-
 ### Resultado
 
 * Mosdepth Summary
@@ -51,9 +49,10 @@ A avaliação da cobertura foi realizada com o [mosdepth](https://github.com/bre
 |total | 	50818468 |	148028122 |	2.91 |	0 |	782 |
 |total_region |	926400 |	101137292 |	109.17 |	0	 | 782 |
 
-
 - Arquivo [BED contendo regiões não cobertas](https://github.com/felipevzps/x880rsfvj/blob/main/dia_2/regioes_nao_cobertas.bed)
 - Arquivo [BED contendo regies cobertas](https://github.com/felipevzps/x880rsfvj/blob/main/dia_2/sample-output.regions.bed.gz)
+
+### Figuras
 
 # 3 - Informações sobre o alinhamento
 
