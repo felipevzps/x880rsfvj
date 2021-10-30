@@ -69,7 +69,7 @@ Um dos resultados gerados pelo mosdepth é o resumo das coberturas por regiões.
 |total_region |	926400 |	101137292 |	109.17 |	0	 | 782 |
 
 - Arquivo [BED contendo regiões não cobertas](https://github.com/felipevzps/x880rsfvj/blob/main/dia_2/regioes_nao_cobertas.bed)
-- Arquivo [BED contendo regies cobertas](https://github.com/felipevzps/x880rsfvj/blob/main/dia_2/sample-output.regions.bed.gz)
+- Arquivo [BED contendo regiões cobertas](https://github.com/felipevzps/x880rsfvj/blob/main/dia_2/sample-output.regions.bed.gz)
 
 
 # 3 - Informações sobre o alinhamento
