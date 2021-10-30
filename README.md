@@ -19,9 +19,11 @@ data/
 Para rodar o pipeline automatizado, basta atualizar o arquivo [config.yaml]() com o `path` para os softwares e utilizar o seguinte comando:
 
 ```bash
-pwd 
+$pwd 
 /home/x880rsfvj
-cd workflow
-snakemake -np --cores 1
+
+$cd workflow
+
+$snakemake -np --cores 1
 ```
 
