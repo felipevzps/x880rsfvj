@@ -1,8 +1,8 @@
-# x880rsfvj
+# 3º Lugar: [Desafio LBB-Mendelics 2021](https://github.com/mendelics/lbb-mendelics-2021/blob/main/pontuacao.md) 
 
-### Instruções para o uso do pipeline automatizado de Variant Calling (desenvolvido no 1 dia de desafio)
+* Nome aleatório gerado para o projeto: [x880rsfvj](https://github.com/felipevzps/x880rsfvj/blob/main/name_generator.py)
 
-### Usage
+## Instruções para o uso do pipeline automatizado de Variant Calling desenvolvido no desafio
 
 É necessário respeitar o parentesco do diretório `data`. Exemplo:
 
@@ -19,7 +19,9 @@ data/
 │   ├── grch38.chr22.fasta 
 
 ```
-Para rodar o pipeline automatizado, basta atualizar o arquivo [config.yaml](https://github.com/felipevzps/x880rsfvj/blob/main/workflow/config.yaml) com o `path` para os softwares e utilizar o seguinte comando:
+
+## Uso
+Para rodar o pipeline automatizado, basta atualizar o arquivo [config.yaml](https://github.com/felipevzps/x880rsfvj/blob/main/workflow/config.yaml) com o `path` para os softwares necessários e executar o seguinte comando:
 
 ```bash
 $pwd 
